@@ -3,43 +3,37 @@ import "./App.css";
 import Card from "./components/Card";
 import { useState } from "react";
 
-let arr = [
-  {
-    id: 1,
-    title: "Dağ 1",
-    par: "Açıklama 1",
-  },
-  {
-    id: 2,
-    title: "Dağ 2",
-    par: "Açıklama 2",
-  },
-  {
-    id: 3,
-    title: "Dağ 3",
-    par: "Açıklama 3",
-  },
-  {
-    id: 4,
-    title: "Dağ 4",
-    par: "Açıklama 4",
-  },
-];
-
 const App = () => {
   const [title, setTitle] = useState("");
   const [paragraf, setParagraph] = useState("");
-  const [list, setList] = useState(arr);
+  const [list, setList] = useState([
+    {
+      id: 1,
+      title: "Dağ 1",
+      par: "Açıklama 1",
+    },
+    {
+      id: 2,
+      title: "Dağ 2",
+      par: "Açıklama 2",
+    },
+    {
+      id: 3,
+      title: "Dağ 3",
+      par: "Açıklama 3",
+    },
+  ]);
   const click = () => {
     setTitle("");
     setParagraph("");
-    const copyList = [...list];
-    copyList.push({
-      id: 5,
-      title,
-      par: paragraf,
-    });
-    setList(copyList);
+    setList([
+      ...list,
+      {
+        id: 5,
+        title,
+        par: paragraf,
+      },
+    ]);
   };
   return (
     <Container>
@@ -67,7 +61,7 @@ const App = () => {
       <Grid>
         {list.map(({ par, title }, i) => (
           <Grid.Col span={4} key={`index ${i}`}>
-            <Card par={par} title={title} lesson={lesson} a={i} />
+            <Card par={par} title={title} a={i} />
           </Grid.Col>
         ))}
       </Grid>
